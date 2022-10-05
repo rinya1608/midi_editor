@@ -36,21 +36,9 @@ module.exports = {
     }),
     new HtmlWebpackPlugin({
       inject: true,
-      filename: "edit.html",
-      chunks: ["browserMain"],
-      template: path.join(__dirname, "public", "edit.html"),
-    }),
-    new HtmlWebpackPlugin({
-      inject: true,
       filename: "index.html",
-      chunks: ["browserLanding"],
+      chunks: ["browserMain"],
       template: path.join(__dirname, "public", "index.html"),
-    }),
-    new HtmlWebpackPlugin({
-      inject: true,
-      filename: "community.html",
-      chunks: ["browserCommunity"],
-      template: path.join(__dirname, "public", "community.html"),
-    }),
+    })
   ],
 }

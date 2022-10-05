@@ -153,12 +153,12 @@ export const Navigation: FC = observer(() => {
         <TabTitle>{localized("help", "Help")}</TabTitle>
       </Tab>
 
-      <Tab id="open-gitter-button">
+      {/*<Tab id="open-gitter-button">
         <Forum style={IconStyle} />
         <TabTitle>{localized("open-chat", "Open Chat")}</TabTitle>
-      </Tab>
+      </Tab>*/}
 
-      <UserButton />
+      {/*<UserButton />*/}
     </Container>
   )
 })

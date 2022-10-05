@@ -36,13 +36,13 @@ export const Navigation: FC = () => {
         <LogoWrapper href="/">
           <img src="logo-white.svg" style={{ height: "1.7rem" }} />
         </LogoWrapper>
-        <UserButtonContent
+        {/*<UserButtonContent
           user={user}
           onClickSignIn={() => {}}
           onClickSignOut={async () => {
             await auth.signOut()
           }}
-        />
+        />*/}
       </Container>
     </NavigationWrapper>
   )
