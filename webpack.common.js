@@ -1,7 +1,8 @@
 const path = require("path")
 const HtmlWebpackPlugin = require("html-webpack-plugin")
 const webpack = require("webpack")
-
+const ModuleFederationPlugin = require('webpack/lib/container/ModuleFederationPlugin');
+const deps = require('./package.json').dependencies;
 module.exports = {
   context: __dirname,
   entry: {
@@ -39,6 +40,27 @@ module.exports = {
       filename: "index.html",
       chunks: ["browserMain"],
       template: path.join(__dirname, "public", "index.html"),
+    }),
+    new ModuleFederationPlugin({
+      name: 'editor',
+      filename: 'remoteEntry.js',
+      exposes: {
+        './MidiEditor': './src/main/MidiEditor.tsx'
+      },
+      shared: {
+        ...deps,
+        react: {
+          singleton: true,
+          import: 'react',
+          shareKey: 'react',
+          shareScope: 'default',
+          requiredVersion: deps.react,
+        },
+        "react-dom": {
+          singleton: true,
+          requiredVersion: deps["react-dom"],
+        },
+      },
     })
   ],
 }

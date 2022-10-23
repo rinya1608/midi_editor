@@ -10,6 +10,11 @@ module.exports = merge(common, {
   devServer: {
     port: 5000,
     hot: "only",
+    headers: {
+      "Access-Control-Allow-Origin": "*",
+      "Access-Control-Allow-Methods": "GET, POST, PUT, DELETE, PATCH, OPTIONS",
+      "Access-Control-Allow-Headers": "X-Requested-With, content-type, Authorization"
+    },
     static: {
       directory: path.resolve(__dirname, "public"),
       watch: true,
