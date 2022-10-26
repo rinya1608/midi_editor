@@ -1,7 +1,8 @@
 import React from "react";
 import {App} from "./components/App/App";
 
-const MidiEditor = () => {
+
+function MidiEditor() {
     return (
         <App/>
     )

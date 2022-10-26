@@ -1,15 +1,19 @@
 import { Divider, MenuItem } from "@mui/material"
 import { observer } from "mobx-react-lite"
-import { FC } from "react"
+import {FC, useEffect} from "react"
 import { useToast } from "use-toast-mui"
 import { localized } from "../../../common/localize/localizedString"
 import { createSong } from "../../actions"
-import { openFile, saveFile, saveFileAs } from "../../actions/file"
+import {openFile, openFileFromLocalStorage, saveFile, saveFileAs} from "../../actions/file"
 import { useStores } from "../../hooks/useStores"
 
 export const FileMenu: FC<{ close: () => void }> = observer(({ close }) => {
   const rootStore = useStores()
   const toast = useToast()
+
+    useEffect(()=>{
+        openFileFromLocalStorage(rootStore)
+    }, [])
 
   const onClickNew = () => {
     const { song } = rootStore

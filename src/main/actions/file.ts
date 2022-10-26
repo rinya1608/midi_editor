@@ -2,6 +2,7 @@ import { songFromMidi, songToMidi } from "../../common/midi/midiConversion"
 import { writeFile } from "../services/fs-helper"
 import RootStore from "../stores/RootStore"
 import { setSong } from "./song"
+import localforage from "localforage";
 
 // URL parameter for automation purposes used in scripts/perf/index.js
 // /edit?disableFileSystem=true
@@ -38,6 +39,20 @@ export const openFile = async (rootStore: RootStore) => {
   const song = await songFromFile(file)
   song.fileHandle = fileHandle
   setSong(rootStore)(song)
+}
+
+export const openFileFromLocalStorage = async (rootStore: RootStore) => {
+
+  localforage.getItem("editFile").then(async (file: any) => {
+    if (file !== undefined && file !== null && file !== '') {
+      const song = await songFromFile(file)
+      if (rootStore != null && song != null) {
+        setSong(rootStore)(song)
+      }
+    }
+  })
+
+  localforage.removeItem("editFile")
 }
 
 export const songFromFile = async (file: File) => {
