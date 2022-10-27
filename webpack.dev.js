@@ -4,11 +4,13 @@ const path = require("path")
 const ForkTsCheckerWebpackPlugin = require("fork-ts-checker-webpack-plugin")
 const ReactRefreshWebpackPlugin = require("@pmmmwh/react-refresh-webpack-plugin")
 
+const PORT = process.env.PORT || 5000;
+
 module.exports = merge(common, {
   mode: "development",
   devtool: "inline-source-map",
   devServer: {
-    port: 5000,
+    port: PORT,
     hot: "only",
     headers: {
       "Access-Control-Allow-Origin": "*",
